@@ -1,11 +1,36 @@
-# Run after load.R
+rm(list=ls())
 
 library(reshape2)
 library(plyr)
 library(gtools)
 library(Hmisc)
 source("clean_func.R")
+source("load.R")
 
+#### Article cleaning ####
+article <- subset(article, complete.cases(country))
+article <- rename(article, replace=c("wbcode"="countrycode"))
+article$country <- tolower(article$country)
+article$country <- sapply(article$country, FUN=simpleCap)
+article <- clean.name(article)
+
+#### Extract region from article ####
+
+region <- subset(article, select=c('country', 'countrycode', 'africa', 'asia.',
+                                   'ceurope', 'weuro', 'meast', 
+                                   'nam', 'sam', 'scan'))
+region <- rename(region, replace=c('asia.'='asia', 'ceurope'='ceuro'))
+
+temp <- with(region, paste(africa, asia, ceuro, weuro, meast, nam, sam, scan))
+find.pos <- function(s) {
+  grep('1', unlist(strsplit(s, split=' ')))
+}
+a <- as.factor( as.numeric(lapply(temp, FUN=find.pos)) )
+levels(a) <- c('africa', 'asia', 'ceuro', 'weuro', 'meast', 'nam', 'sam', 'scan')
+
+region <- cbind(region, region=a)
+
+with(region, interaction(africa, asia))
 #### CPI cleaning ####
 # Invoke add.year to add a column of year
 for (obj in c('ti00', 'ti01', 'ti02', 'ti03', 'ti04', 'ti05',
@@ -42,21 +67,15 @@ wgi <- rename(wgi, replace=c("CTRY"="countrycode"))
 names(wgi) <- tolower(names(wgi))
 wgi$country <- tolower(wgi$country)
 
-simpleCap <- function(x) { # function to capitalize first letter each word
-  s <- strsplit(x, " ")[[1]]
-  first <- substring(s, 1, 1)
-  rest <- substring(s, 2)
-  paste( ifelse(s!="and", toupper(first), first), rest, sep='', collapse=' ')
-}
 wgi$country <- sapply(wgi$country, FUN=simpleCap)
 
 wgi <- clean.name(wgi)
+wgi <- merge(wgi, region, by='countrycode')
+wgi <- rename(wgi, replace=c('country.x'='country'))
+drops <- c('country.y') ; wgi <- wgi[, !(names(wgi) %in% drops)]
+wgi <- cbind(wgi, ADB=in.ADB(wgi$country))
 
-#### Article cleaning ####
-article <- subset(article, complete.cases(country))
-article <- rename(article, replace=c("wbcode"="countrycode"))
-article$country <- tolower(article$country)
-article$country <- sapply(article$country, FUN=simpleCap)
-article <- clean.name(article)
 
-save(article, ti, wb05, wb11, wgi, file="gov_clean.RData")
+#### Save cleaned data ####
+save(article, ti, wb05, wb11, wgi, region, file="gov_clean.RData")
+

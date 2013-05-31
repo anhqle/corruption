@@ -135,3 +135,10 @@ add.year <- function(tixx, prefix) {
   tixx <- cbind(tixx, year=rep(full_year, nrow(tixx)))
   tixx
 }
+
+simpleCap <- function(x) { # function to capitalize first letter each word
+  s <- strsplit(x, " ")[[1]]
+  first <- substring(s, 1, 1)
+  rest <- substring(s, 2)
+  paste( ifelse(s!="and", toupper(first), first), rest, sep='', collapse=' ')
+}

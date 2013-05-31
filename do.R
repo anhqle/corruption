@@ -3,17 +3,10 @@ library(ggplot2)
 library(reshape2)
 library(plyr)
 
-load("wb.RData")
-load("ti99_12.RData")
-
-base.plot <- function(data, x, y) {
-  ggplot(data=data, aes_string(x=x)) +
-    geom_text(aes_string(y=y, label="countrycode"), size=3) +
-    geom_smooth(aes_string(y=y))
-}
+load("gov_clean.RData")
 
 #### Change in TI ####
-ti$year <- with(ti, year)
+
 ti <- subset(ti, year<=2011)
 ti <- ddply(ti, c("year"), transform, rank=rank(-ti, ties.method=c("first")))
 ti <- ddply(ti, c("country"), transform, change=c(NA, diff(ti)))
