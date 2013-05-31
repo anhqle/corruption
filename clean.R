@@ -1,77 +1,62 @@
-load("clean_fun.RData")
+# Run after load.R
 
-article <- loadWorkbook("what_have_we_learned_data.xls")
-d.article <- readWorksheet(article, sheet="Data", endRow=217)
-d.article <- rename(d.article, replace=c("wbcode"="countrycode", "asia."="asia"))
-d.article <- cbind(d.article, ADB=in.ADB(d.article$country))
+library(reshape2)
+library(plyr)
+library(gtools)
+library(Hmisc)
+source("clean_func.R")
 
-wb11 <- clean.wb("WB/wb11.dta", "11")
-wb11 <- cbind(wb11, ADB=in.ADB(wb11$country))
-wb05 <- clean.wb("WB/wb05.dta", "05")
-wb05 <- cbind(wb05, ADB=in.ADB(wb05$country))
-
-temp <- read.dta("WB/wgidataset.dta")
-
-wgi <- clean.wgi("WB/wgidataset.dta")
-
-ti98 <- clean.ti.ts("CPI/CPI1998.xls", "Sheet1", startRow=2, endCol=5,
-                    names=c('rank', 'country','ti', 'ti.std', 'survey_used'))
-ti99 <- clean.ti.ts("CPI/CPI1999.xls", "Sheet1", startRow=3, endCol=5,
-                    names=c('rank', 'country','ti', 'ti.std', 'survey_used'))
-ti00 <- clean.ti.ts("CPI/CPI2000.xls", "Sheet1", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti01 <- clean.ti.ts("CPI/CPI2001.xls", "Sheet1", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti02 <- clean.ti.ts("CPI/CPI2002.xls", "Sheet1", startRow=3, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti03 <- clean.ti.ts("CPI/CPI2003.xls", "Sheet1", startRow=2, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti04 <- clean.ti.ts("CPI/CPI2004.xls", "2004 CPI", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti05 <- clean.ti.ts("CPI/CPI2005.xls", "2005 CPI", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti06 <- clean.ti.ts("CPI/CPI2006.xls", "2006 CPI", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti07 <- clean.ti.ts("CPI/CPI2007.xls", "2007 CPI", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti08 <- clean.ti.ts("CPI/CPI2008.xls", "2008 CPI", startRow=4, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti09 <- clean.ti.ts("CPI/CPI2009.xls", "Sheet1", startRow=2, endCol=4,
-                    names=c('rank', 'country','ti', 'survey_used'))
-ti10 <- clean.ti.ts("CPI/CPI2010.xls", "CPI table", startRow=5, endCol=5,
-                    names=c('rank', 'country','ti', 'survey_used', 'ti.std'))
-ti11 <- clean.ti.ts("CPI/CPI2011.xls", "Global", startRow=3, endCol=6,
-                    names=c('rank', 'country','ti', 'rank', 'survey_used', 'ti.std'))
-ti12 <- clean.ti.ts("CPI/CPI2012.xls", "CPI 2012", startRow=3, endCol=7,
-                    names=c('rank', 'country', 'region', 'ti', ' ', 'survey_used', 'ti.std'))
-
-add.year <- function(tixx, prefix) {
-  year <- substr(deparse(substitute(tixx)), 3, 4)
-  full_year <- paste(prefix, year, sep='')
-  tixx <- cbind(tixx, year=rep(full_year, nrow(tixx)))
-  tixx
-}
-
+#### CPI cleaning ####
+# Invoke add.year to add a column of year
 for (obj in c('ti00', 'ti01', 'ti02', 'ti03', 'ti04', 'ti05',
               'ti06', 'ti07', 'ti08', 'ti09', 'ti10', 'ti11', 'ti12')) {
   eval(parse(text=( paste(obj, ' <- add.year(', obj, ', "20")', sep='') )))
-  
 }
+
 for (obj in c('ti98', 'ti99')) {
   eval(parse(text=( paste(obj, ' <- add.year(', obj, ', "19")', sep='') )))
-  
 }
 
-dfs <- ls()[sapply(mget(ls(), .GlobalEnv), is.data.frame)]
-
+# Bind all ti together
 ti <- smartbind(ti98, ti99, ti00, ti01, ti02, ti03, ti04, ti05, 
                 ti06, ti07, ti08, ti09, ti10, ti11, ti12)
+# Keep some variables
 keeps <- c('country', 'year', 'ti', 'ti.std', 'survey_used')
 ti <- ti[, keeps]
 ti <- ti[order(ti$country, ti$year), ]
 
-# Add dummy for ADB
-
+# Add dummy for ADB membership
 ti<- cbind(ti, ADB=in.ADB(ti$country))
 
-save(ti, file="ti99_12.RData")
+# remove individual ti files
+rm(list=ls(pattern="^ti.."))
+
+#### WB cleaning ####
+wb05 <- clean.wb(wb05)
+wb05 <- clean.name(wb05)
+wb11 <- clean.wb(wb11)
+wb11 <- clean.name(wb11)
+
+#### WGI cleaning ####
+wgi <- rename(wgi, replace=c("CTRY"="countrycode"))
+names(wgi) <- tolower(names(wgi))
+wgi$country <- tolower(wgi$country)
+
+simpleCap <- function(x) { # function to capitalize first letter each word
+  s <- strsplit(x, " ")[[1]]
+  first <- substring(s, 1, 1)
+  rest <- substring(s, 2)
+  paste( ifelse(s!="and", toupper(first), first), rest, sep='', collapse=' ')
+}
+wgi$country <- sapply(wgi$country, FUN=simpleCap)
+
+wgi <- clean.name(wgi)
+
+#### Article cleaning ####
+article <- subset(article, complete.cases(country))
+article <- rename(article, replace=c("wbcode"="countrycode"))
+article$country <- tolower(article$country)
+article$country <- sapply(article$country, FUN=simpleCap)
+article <- clean.name(article)
+
+save(article, ti, wb05, wb11, wgi, file="gov_clean.RData")
