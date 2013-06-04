@@ -3,6 +3,7 @@ try(detach("package:Hmisc", unload=TRUE), silent=TRUE)
 library(ggplot2)
 library(reshape2)
 library(plyr)
+library(maps)
 source("visual_func.R")
 load("gov_clean.RData")
 
@@ -21,29 +22,14 @@ ddply(ti, c("year"), summarize, no.country=length(country))
 wgi <- add.rank(wgi, "cc_est")
 wgi.change <- find.change(subset(wgi, ADB==1 & asia==1), "cc_est")
 
-wgip <- ggplot(data=wgi, aes(x=year, y=cc_est, group=country))
-wgip + geom_line(data=subset(wgi, asia==1))
-wgip + geom_line(data=subset(wgi, ADB==1))
-wgip + geom_line(data=subset(wgi, country %in% wgi.change[[1]])) +
-  geom_text(data=subset(wgi, year==2011 & country %in% wgi.change[[1]]), aes(label=country))
 
-plot1 <- wgip + geom_smooth(data=subset(wgi, country %in% wgi.change[[1]]), se=FALSE) + 
-  geom_smooth(data=subset(wgi, country=="Vanuatu",), se=FALSE, col='red') +
-  geom_text(data=subset(wgi, year==2011 & country %in% wgi.change[[1]]), 
-            aes(label=country), hjust=0.75) +
-  ylab("Control of Corruption")
-ggsave("wgi_corruption.pdf", path="./graph/")
+p <- ggplot(data=na.omit(wgi[, c('region', 'year', 'country', 'cc_est')]),
+                         aes(year, cc_est, group=country))
+p + geom_line(aes(col=region)) + facet_wrap( ~ region)
 
-plot2 <- wgip + geom_smooth(data=subset(wgi, country %in% wgi.change[[1]]), aes(y=rank), se=FALSE) + 
-  geom_smooth(data=subset(wgi, country=="Vanuatu",), aes(y=rank), se=FALSE, col='red') +
-  geom_text(data=subset(wgi, year==2011 & country %in% wgi.change[[1]]), 
-            aes(y=rank, label=country), hjust=0.75) +
-  ylab("Control of Corruption (Ranking)") + 
-  ylim(c( max(wgi$rank, na.rm=TRUE), min(wgi$rank, na.rm=TRUE) ))
-
-pdf("./graph/change_in_corruption.pdf", width=12, height=5)
-grid.arrange(plot1, plot2, ncol=2)
-dev.off()
+p2 <- ggplot(data=temp, aes(x=cc_est))
+p2 + geom_histogram() + facet_wrap( ~ region)
+p2 + geom_freqpoly(aes(y=..density.., col=region))
 
 wgip(data=subset(wgi, country %in% wgi.change[[2]]))
 
@@ -53,3 +39,21 @@ p <- ggplot(a, aes(x=year, y=mean, group=region))
 p + geom_line() + geom_text(data=subset(a, year==2011), aes(label=region)) +
   scale_y_continuous(breaks=seq(-2.5, 2.5, by=0.5))
 p + geom_line(aes(color=region))
+
+saveHTML({
+  for (i in 1:10) plot(runif(10), ylim = 0:1)
+})
+temp <- subset(na.omit(wgi[, c('region', 'year', 'country', 'cc_est')]), year==2011)
+country <- map_data("world")
+temp.new <- temp[, !(names(temp) %in% c('region'))]
+temp.new$country[temp.new$country=="United States"] <- "USA"
+temp.new$country[temp.new$country=="Russian Federation"] <- "USSR"
+temp.new$country[temp.new$country=="United Kingdom"] <- "UK"
+temp.new$country[temp.new$country=="St. Vincent and the Grenadines"] <- "Saint Vincent"
+temp.new$country[temp.new$country=="St. Lucia"] <- "Saint Lucia"
+temp.new$country[temp.new$country=="Congo, Dem. Rep."] <- "Zaire"
+choro <- merge(country, temp.new, by.x="region", by.y="country")
+choro <- choro[order(choro$order), ]
+qplot(long, lat, data=choro, fill=cc_est, group=group, geom="polygon") +
+  scale_fill_gradient("Control of\ncorruption\n effectiveness")
+ggsave("./graph/corruption_map.pdf")
