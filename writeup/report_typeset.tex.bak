@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+
+% math typesetting
+\usepackage{array, amsmath, amssymb, amsfonts}
+
+% tables, list
+\usepackage{tabularx, booktabs, multicol, multirow, longtable}
+\usepackage{enumitem}
+
+% graphics stuff
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{subfig, graphicx, tikz}
+\usepackage[space]{grffile} % allows us to specify directories that have spaces
+\usepackage[section]{placeins} % prevents floats from moving past a \FloatBarrier or section
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{setspace}
+
+% -------------------- title -------------------- %
+
+\title{}
+\author{}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%
+
+% \doublespacing
+
+\begin{document}
+
+%\maketitle
+
+\section*{Introduction}
+blah blah blah
+
+\end{document}
