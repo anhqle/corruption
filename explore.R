@@ -57,3 +57,9 @@ choro <- choro[order(choro$order), ]
 qplot(long, lat, data=choro, fill=cc_est, group=group, geom="polygon") +
   scale_fill_gradient("Control of\ncorruption\n effectiveness")
 ggsave("./graph/corruption_map.pdf")
+
+# Checking ADB's effect in Nepal
+
+d <- subset(wgi, country=="Nepal", select=c("year", "cc_est"))
+d <- d[order(d$year), ]
+d
