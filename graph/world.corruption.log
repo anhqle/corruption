@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  17 JUN 2013 15:15
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  19 JUN 2013 17:30
 entering extended mode
-**D:/Projects/corruption/graph/world.corruption.tex
-(D:/Projects/corruption/graph/world.corruption.tex
+**world.corruption.tex
+(D:\Projects\corruption\graph\world.corruption.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -118,14 +118,16 @@ LaTeX Font Info:    ... okay on input line 3.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
  <D:/Projects/corruption/graph/Rplot1.png> <D:/Projects/corruption/graph/Rplot2
-.png> <D:/Projects/corruption/graph/Rplot3.png> <D:/Projects/corruption/graph/R
-plot4.png> <D:/Projects/corruption/graph/Rplot5.png> <D:/Projects/corruption/gr
-aph/Rplot6.png> <D:/Projects/corruption/graph/Rplot7.png> <D:/Projects/corrupti
-on/graph/Rplot8.png> <D:/Projects/corruption/graph/Rplot9.png> <D:/Projects/cor
-ruption/graph/Rplot10.png> <D:/Projects/corruption/graph/Rplot11.png> <D:/Proje
-cts/corruption/graph/Rplot12.png> <D:/Projects/corruption/graph/Rplot13.png> [1
-{C:/Users/Anh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(D:\Projects\corruption\graph\world.corruption.aux) ) 
+.png (PNG copy)> <D:/Projects/corruption/graph/Rplot3.png> <D:/Projects/corrupt
+ion/graph/Rplot4.png (PNG copy)> <D:/Projects/corruption/graph/Rplot5.png (PNG 
+copy)> <D:/Projects/corruption/graph/Rplot6.png (PNG copy)> <D:/Projects/corrup
+tion/graph/Rplot7.png (PNG copy)> <D:/Projects/corruption/graph/Rplot8.png (PNG
+ copy)> <D:/Projects/corruption/graph/Rplot9.png (PNG copy)> <D:/Projects/corru
+ption/graph/Rplot10.png (PNG copy)> <D:/Projects/corruption/graph/Rplot11.png (
+PNG copy)> <D:/Projects/corruption/graph/Rplot12.png (PNG copy)> <D:/Projects/c
+orruption/graph/Rplot13.png (PNG copy)> [1{C:/Users/Anh/AppData/Local/MiKTeX/2.
+9/pdftex/config/pdftex.map}] (D:\Projects\corruption\graph\world.corruption.aux
+) ) 
 Here is how much of TeX's memory you used:
  1193 strings out of 493921
  17181 string characters out of 3144882
@@ -133,12 +135,12 @@ Here is how much of TeX's memory you used:
  4522 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 23i,4n,23p,225b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on world.corruption.pdf (1 page, 247079 bytes).
+ 23i,4n,23p,196b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+
+Output written on world.corruption.pdf (1 page, 348924 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
+ 121 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  306 words of extra memory for PDF output out of 10000 (max. 10000000)
 

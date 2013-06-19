@@ -75,7 +75,16 @@ wgi <- rename(wgi, replace=c('country.x'='country'))
 drops <- c('country.y') ; wgi <- wgi[, !(names(wgi) %in% drops)]
 wgi <- cbind(wgi, ADB=in.ADB(wgi$country))
 
+#### GIR cleaning ###
+gir11 <- t(gir11)
+colnames(gir11) <- gir11[2,]
+gir11 <- gir11[3:nrow(gir11), ]
+gir11 <- data.frame(country=row.names(gir11), gir11)
+colnames(gir11) <- c("country", "overall", "legal", "imp", "gap")
+gir11$country <- as.character(gir11$country)
+gir11[2:5] <- lapply(gir11[2:5], as.character)
+gir11[2:5] <- lapply(gir11[2:5], as.numeric)
 
 #### Save cleaned data ####
-save(article, ti, wb05, wb11, wgi, region, file="gov_clean.RData")
+save(article, ti, wb05, wb11, wgi, region, gir11, file="gov_clean.RData")
 

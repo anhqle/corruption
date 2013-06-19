@@ -4,10 +4,16 @@ library(foreign)
 source("clean_func.R")
 
 article <- loadWorkbook("rawdata/what_have_we_learned_data.xls")
-article <-readWorksheet(article, sheet="Data")
+article <- readWorksheet(article, sheet="Data")
 wb11 <- read.dta("rawdata/wb11.dta")
 wb05 <- read.dta("rawdata/wb05.dta")
 wgi <- read.dta("rawdata/wgidataset.dta")
+
+gir11.book <- loadWorkbook("rawdata/GIR11_data.xls")
+gir11 <- readWorksheet(gir11.book, sheet="Scorecard 2011", region="A1:AL5")
+gir11 <- gir11[, !(names(gir11) %in% c("Category", "Subcat", "QID", 
+                                       "Question.Set", "Title", "Median"))]
+gir11 <- cbind(country=row.names(gir11), gir11)
 
 # for (file in Sys.glob("rawdata/CPI*.xls")) {
 #   df.name <- strsplit(file, split="/")[[1]][2]

@@ -3,6 +3,16 @@
 % math typesetting
 \usepackage{array, amsmath, amssymb, amsfonts}
 
+% layout control
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=20mm,bottom=25mm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\setlength{\parskip}{.5em}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{parallel}
+\usepackage{parcolumns}
+
 % tables, list
 \usepackage{tabularx, booktabs, multicol, multirow, longtable}
 \usepackage{enumitem}
@@ -25,16 +35,26 @@
 \usepackage{enumitem} %no space bewteen item [nosepitem]
 \usepackage{boxedminipage} % floating textbox
 \usepackage{animate}
-\graphicspath{../graph/}
-\usepackage{hyperref}
+\graphicspath{ {../graph/} }
+\usepackage[colorlinks=true, allcolors=MidnightBlue]{hyperref}
 
 % -------------------- title -------------------- %
 
-\title{Why best practice does not work in practice \\
-Political challenges to implementation}
-\author{Anh Le \\
-IED Intern}
-\date{Summer 2013}
+\title{Why Best Practice Does Not Work in Practice?\\
+        The Political Challenge of Implementation}
+\author{Anh Le - IED Intern}
+\date{}
+
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{20pt}
+\pagestyle{fancyplain}
+
+\fancyhf{}
+
+\lhead{\fancyplain{}{Anh Le}}
+\chead{\fancyplain{}{The Political Challenge of Implementation}}
+\rhead{\fancyplain{}{\today}}
+\rfoot{\fancyplain{}{\thepage}}
 
 %%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%
 
@@ -43,23 +63,33 @@ IED Intern}
 \begin{document}
 
 \maketitle
+\begin{abstract}
+blah blah blah
+\end{abstract}
 
-\section*{Introduction}
+\section{Introduction}
 \label{sec:intro}
 
-In the latest Global Integrity Report (2011), which ranks countries on their anti-corruption effort, an Asian country stands out remarkably. It boasts an exemplary score of 86.9 on legal framework, higher than Germany's 81.0. It has perfect anti-corruption law, which criminalizes bribery, extortion, and misuse of public assets. Better yet, the country has established a host of supporting institutions, including a national ombudsman protected by law against political interference---something that is left for citizens to desire even in the United States \citep{MinistryofLawandJustice2003}. On top of that, there is an independent agency with the legal mandate to address corruption, whose leader can only be removed by the head of a democratically elected government, based on an inquiry by the Supreme Court.
+In the latest \citet{Integrity2012a}, which ranks countries on their anti-corruption effort, an Asian country stands out remarkably. It boasts an exemplary score of 86.9 on legal framework, higher than Germany's 81.0. It has perfect anti-corruption law, which criminalizes bribery, extortion, and misuse of public assets. Better yet, the country has established a host of supporting institutions, including a national ombudsman protected by law against political interference---something that is left for citizens to desire even in the United States \citep{MinistryofLawandJustice2003}. On top of that, there is an independent agency with the legal mandate to address corruption, whose leader can only be removed by the head of a democratically elected government, based on an inquiry by the Supreme Court.
 
-The country in question is India, a place deeply mired for years in corruption. Yet another country with a puzzling mismatch between law and practice is Indonesia, whose legal framework earns a near perfect score of 94.6, leaving both the United States (90.4) and Germany (81.0) lagging behind. This pattern extends well beyond Asia to all corners of the developing world, including Uganda (97.8) and Kenya (83.2). These developing countries all possess, on paper at least, world-class legal systems. The intensive effort by the development community to spread knowledge and tout models has certainly paid off in this regard.
+The country in question is India, a place deeply mired for years in corruption. There are yet other countries with the same puzzling mismatch between law and practice such as China and Mongolia, whose legal framework earns a score of 78 and 80, closely in the same league with Germany (81.0). This pattern extends well beyond Asia to all corners of the developing world, including Uganda (97.8) and Kenya (83.2). These developing countries all possess, on paper at least, world-class legal systems. The intensive effort by the development community to spread knowledge and tout models has certainly paid off in this regard.
 
-But we-as committed organizations and passionate professionals-care not about laws on paper but lives on Earth. Does the experience of corruption improve accordingly? Unfortunately not, as the rate of progress remains glacially low. Even if we use an optimistic estimate of countries' improvement rate, it will take developing countries hundreds, even thousands of years, in order to catch up with the standard of today Singapore \citep{Pritchett2010}.\footnote{We can calculate the fastest improvement rate by assuming that countries have the lowest possible starting point, set to that of Somalia today} Our relentless effort to promote best practice in institutional form has led to improvement, but only in the sense that a new anti-corruption law passed with little effect is an improvement, and that development finally achieved after hundreds of years is a success.
+But we---as committed organizations and passionate professionals-care not about laws on paper but lives on Earth. Does the experience of corruption improve accordingly? Unfortunately not, as the rate of progress remains glacially low. Even if we use an optimistic estimate of countries' improvement rate, it will take developing countries hundreds, even thousands of years, in order to catch up with the standard of today Singapore \citep{Pritchett2010}.\footnote{We can calculate the fastest improvement rate by assuming that countries have the lowest possible starting point, set to that of Somalia today} Our relentless effort to promote best practice in institutional form has led to improvement, but only in the sense that a new anti-corruption law passed with little effect is an improvement, and that development finally achieved after hundreds of years is a success.
 
 Of course, that is not to say all forms of technical assistance and knowledge solution are not valuable. If there is a new drug or construction technology, it should not be held back outside the countries' reach. However, in governance and anti-corruption issues, the centerpiece is people, whose political interests and interactions in each country are complicated and unique. In this setting, transplanting best governance practice is not straightforward as pouring concrete or combating viruses.
 
 And that is the short answer to why implementation often fails. This paper will provide the longer answer, explaining how reform initiatives, from both supply and demand sides, erroneously assume that the state and the citizens are monolithic entities with a single-minded interest in better governance. On the contrary, governance and corruption are, at their core, a collective action problem, caused by the fact that the benefit of bribery and patronage (for both the official and the citizen) is immediate and concentrated, whereas the cost of poor governance is dispersed and opaque. Improving governance and fighting corruption, therefore, are fundamentally about building the political will that rallies the people and reform-minded officials under the promise of change.
 
-Keeping in mind its key message about political will as the prerequisite of reform, this paper is structured accordingly. The first section analyzes the theoretical framework of current governance initiative, showing that it think of governance as a principal-agent, instead of a collective action, problem. This thinking leads to the mistaken belief that the greatest obstacle to reform is a lack of resource and design expertise, both of which institutions such as the ADB are eager to provide \citep[16]{GlobalIntegrity2012}. The second section discusses several case studies to emphasize that reform has always been a deeply political, not bureaucratic, matter, and that its success and failure have always depended on overcoming the collective action problem. The third section proposes the wide adoption of "Indicators and Benchmarks" as a clever strategy for the ADB to nurture the political will for reform in a sanitized, politically-neutral manner. By comparing local performances in public sectors with an immediate impact on people's welfare, this strategy rewards reform-minded officials and invigorates the public interest in the cause of good governance.
+Keeping in mind its key message about political will as the prerequisite of reform, this paper is structured accordingly. Section \ref{sec:principalagent} analyzes the theoretical framework of current governance initiative, showing that it think of governance as a principal-agent, instead of a collective action, problem. This thinking leads to the mistaken belief that the greatest obstacle to reform is a lack of resource and design expertise, both of which institutions such as the ADB are eager to provide \citep[16]{GlobalIntegrity2012}. Section \ref{sec:collectiveaction} discusses several case studies to emphasize that reform has always been a deeply political, not bureaucratic, matter, and that its success and failure have always depended on overcoming the collective action problem. Section \ref{sec:IB} proposes the wide adoption of "Indicators and Benchmarks" as a clever strategy for the ADB to nurture the political will for reform in a sanitized, politically-neutral manner. By comparing local performances in public sectors with an immediate impact on people's welfare, this strategy rewards reform-minded officials and invigorates the public interest in the cause of good governance.
 
 After all, only the people themselves that can, and should, do the strenuous work of shaping their countries' trajectory. We must cheer them on, but the journey towards betterment is theirs to travel.
+
+\begin{figure}
+\begin{center}
+\includegraphics{implementation}
+\captionof{figure}{Same legal, different implementation}
+\end{center}
+\end{figure}
 
 \begin{figure}
 \begin{center}
@@ -146,9 +176,9 @@ Deeply conscious of the tension, this section proposes the use of the Indicators
 Furthermore, this strategy integrates well with the existing practices and ethos of the ADB. Perhaps the most important advantage is that we can highlight positive achievement instead of "corruption," a sensitive topic that may turn off governments' cooperation, jeopardizing other initiatives. Second, the ADB is already proficient in creating performance index such as this one, which shares many aspects with the Public Expenditure Tracking Survey (PETS), Doing Business Survey, and Community Score Card. Third, the strategy fits into a growing recognition that macro indices, such as the Corruption Perception Index or the World Governance Index, are too coarse to diagnose any problem beyond saying that there is a problem. For this reason, in its new Governance and Anti-Corruption strategy, the World Bank endorses the use of "actionable governance indicators" (AGIs). Within the ADB, the South Asia Department already moves forward with an index of the same philosophy, comparing trade performance between specific ports, not just countries, in the region.
 
 \subsection{Yet another index?}
-For a measurement to be useful to policy maker, it must satisfy the following criteria
+For a measurement to be useful to policy maker, it must satisfy the following criteria:
+\bigskip
 
-\fbox{
 \begin{boxedminipage}{\textwidth}
 \begin{itemize}[noitemsep]
 \item{Detailed: whole-country index is too coarse to capture the multiple dimensions of any governance issue.}
@@ -162,8 +192,8 @@ For a measurement to be useful to policy maker, it must satisfy the following cr
 \item{Actionable: Assessments should not only show that a situation is bad or good, improving or deteriorating, but should also point directly to improvements likely to succeed.}
 \end{itemize}
 \end{boxedminipage}
-}
 This list is reproduced from \citet{Johnston2010}
+\bigskip
 
 As reviewed more extensively in \citet{Pande2013}, aggregate macro indicators have been censured on many counts, especially for lack of details, validity, and actionability.
 
@@ -199,7 +229,7 @@ Good benchmarks do not judge units against some ideal standards but take root in
 
 Secondly, within the ADB, there is already the recognition of the need for actionable indicators at the sub-national level to aid reform. For example, the South Asia department initiated the SASEC framework in order to complement the cross-national trade facilitation data, which are too coarse to diagnose the bottlenecks in trade between South Asian countries.
 
-Therefore, the ADB is already well equipped to execute this strategy. On the other hand, the ADB needs a lot more deliberation is needed to identify potential entry points for this approach. Who will be our basic constituencies? Everyone is affected by corruption, and thus a potential supporter if not for the fact that the dispersed cost of corruption renders the political will hard to sustain in the first place. Therefore, we must identify potential ``stakeholders who suffer immediate and tangible costs of corruption, and have resources they can mobilize against it'' \citep[7]{Johnston2002}. Small and medium businesses are promising proponents, for they do have resources beyond subsistence and, unlike large corporations, are likely to be victims rather than accomplices of a corrupt network. Another possibility lies in existing networks, such as religious or communal organizations. In any case, the goal is to identify organized segments in a country's social, political, and economic areas, ``educating people about the costs of corruption while searching for those who find them most oppressive'' \citep[7]{Johnston2002}. This task requires a deep political economy analysis, which is not yet a staple in ADB's governance and anti-corruption strategy.
+Therefore, the ADB is already well equipped to execute this strategy. On the other hand, the ADB needs a lot more deliberation is needed to identify potential entry points for this approach. Who will be our basic constituencies? Everyone is affected by corruption, and thus a potential supporter if not for the fact that the dispersed cost of corruption renders the political will hard to sustain in the first place. Therefore, we must identify potential ``stakeholders who suffer immediate and tangible costs of corruption, and have resources they can mobilize against it.'' Small and medium businesses are promising proponents, for they do have resources beyond subsistence and, unlike large corporations, are likely to be victims rather than accomplices of a corrupt network. Another possibility lies in existing networks, such as religious or communal organizations. In any case, the goal is to identify organized segments in a country's social, political, and economic areas, ``educating people about the costs of corruption while searching for those who find them most oppressive'' \citep[7]{Johnston2002}. This task requires a deep political economy analysis, which is not yet a staple in ADB's governance and anti-corruption strategy.
 
 \newpage
 \bibliographystyle{chicago}
