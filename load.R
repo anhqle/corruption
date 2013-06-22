@@ -8,6 +8,7 @@ article <- readWorksheet(article, sheet="Data")
 wb11 <- read.dta("rawdata/wb11.dta")
 wb05 <- read.dta("rawdata/wb05.dta")
 wgi <- read.dta("rawdata/wgidataset.dta")
+fdi <- read.dta("rawdata/fdi.dta")
 
 gir11.book <- loadWorkbook("rawdata/GIR11_data.xls")
 gir11 <- readWorksheet(gir11.book, sheet="Scorecard 2011", region="A1:AL5")

@@ -61,6 +61,9 @@ wb05 <- clean.wb(wb05)
 wb05 <- clean.name(wb05)
 wb11 <- clean.wb(wb11)
 wb11 <- clean.name(wb11)
+fdi <- clean.wb(fdi)
+fdi <- clean.name(fdi)
+fdi <- cbind(fdi, ADB=in.ADB(fdi$country))
 
 #### WGI cleaning ####
 wgi <- rename(wgi, replace=c("CTRY"="countrycode"))
@@ -86,5 +89,5 @@ gir11[2:5] <- lapply(gir11[2:5], as.character)
 gir11[2:5] <- lapply(gir11[2:5], as.numeric)
 
 #### Save cleaned data ####
-save(article, ti, wb05, wb11, wgi, region, gir11, file="gov_clean.RData")
+save(article, ti, wb05, wb11, wgi, region, gir11, fdi, file="gov_clean.RData")
 

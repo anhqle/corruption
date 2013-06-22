@@ -48,15 +48,16 @@ dev.off()
 d <- subset(gir11, country %in% c("Armenia", "Vietnam", "Azerbaijan", "Georgia", "Indonesia", "India", "Mongolia", "China", "Germany", "United.States"),
             select=c("legal", "imp", "country"))
 d <- within(d, country[country=="United.States"] <- "USA")
-d <- within(d, country <- factor(country, levels=country[order(imp, decreasing=TRUE)]))
+d <- within(d, country <- factor(country, levels=country[order(imp)]))
 gir11.long <- melt(d, id="country")
 
 girp <- ggplot(gir11.long, aes(country, value, fill=variable))
 girp + geom_bar(stat="identity", width=1, position=position_dodge(width=0.5)) +
   scale_fill_brewer(palette="Set1", "Variable", labels=c("Legal Framework", "Implementation")) +
-  geom_vline(xintercept=2.5, linetype="longdash") + coord_flip()
+  geom_vline(xintercept=8.5, linetype="longdash") +
+  theme(text=element_text(size=20)) + coord_flip()
 
-ggsave("./graph/implementation.pdf", width=7, height=7)
+ggsave("./graph/implementation.pdf", width=10, height=7)
 
 #### Animated world corruption ####
 
@@ -105,7 +106,7 @@ saveLatex({
     p <- ggplot(data=choro, aes(long, lat, fill=cc_est, group=group))
     print(
       p + geom_polygon() + ylim(c(-60,85)) +
-        theme(text=element_text(size=20))+
+        theme(text=element_text(size=20)) +
         scale_fill_gradient2("Control of\n corruption\n score", limits=c(-2.5,2.5)) + 
         labs(title=substitute(paste("Severity of corruption in the world, year ", i), list(i=i)))
     )
@@ -118,3 +119,8 @@ saveLatex({
           latex.filename = "world.corruption.tex", 
           outdir="D:/Projects/corruption/graph")
 
+#### FDI ####
+
+fdid <- subset(fdi, ADB==1 & year==2011)
+fdip <- ggplot(data=fdid, aes(country))
+fdip + geom_bar(aes(y=netfdi_percent), stat="identity") + coord_flip()

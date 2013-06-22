@@ -15,8 +15,10 @@ clean.wb <- function(d) {
                              "ic_bus_ease_xq"="bus_ease",
                              "ic_bus_invs_xq"="bus_invs",
                              "ic_cns_corr_zs"="corr_asproblem_percent",
-                             "ny_gdp_petr_rt_zs"="oil_percentgdp"))
-  drops <- c("country.y", "iso2code", "region", "year")
+                             "ny_gdp_petr_rt_zs"="oil_percentgdp",
+                             "bn_klt_dinv_cd_zs"="fdi_percent",
+                             "bx_klt_dinv_wd_gd_zs"="netfdi_percent"))
+  drops <- c("country.y", "iso2code", "region")
   d <- d[, !(names(d) %in% drops)]
   
 #   names(d)[4:length(names(d))] <- paste(names(d)[4:length(names(d))], year, sep="_")
