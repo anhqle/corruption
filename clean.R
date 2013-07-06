@@ -90,4 +90,5 @@ gir11[2:5] <- lapply(gir11[2:5], as.numeric)
 
 #### Save cleaned data ####
 save(article, ti, wb05, wb11, wgi, region, gir11, fdi, file="gov_clean.RData")
+save(wgi, file="wgi_cleaned.RData")
 
