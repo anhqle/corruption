@@ -9,5 +9,6 @@
 \contentsline {section}{\numberline {5}Indicators and Benchmarks---a viable strategy}{12}{section.5}
 \contentsline {subsection}{\numberline {5.1}Yet another index?}{13}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}The basic components of IB}{14}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Anticipating questions}{15}{subsection.5.3}
-\contentsline {section}{\numberline {6}Conclusion: Change the mindset, not the tool}{19}{section.6}
+\contentsline {subsection}{\numberline {5.3}Examples of IB}{15}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Anticipating questions}{15}{subsection.5.4}
+\contentsline {section}{\numberline {6}Conclusion: Change the mindset, not the tool}{20}{section.6}

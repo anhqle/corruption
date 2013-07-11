@@ -40,8 +40,14 @@ ADB (2013).
   Action Plan (GACAP II)}.
 \newblock Technical report, ADB, Manila.
 
-\bibitem[\protect\citeauthoryear{ADB-IED}{ADB-IED}{2013}]{ADB-IED2013}
-ADB-IED (2013).
+\bibitem[\protect\citeauthoryear{ADB-IED}{ADB-IED}{2013a}]{ADB-IED2013a}
+ADB-IED (2013a).
+\newblock {Asian Development Bank decentralization: Progress and Operational
+  Performance (Draft for Peer Review)}.
+\newblock Technical report, ADB, Manila.
+
+\bibitem[\protect\citeauthoryear{ADB-IED}{ADB-IED}{2013b}]{ADB-IED2013}
+ADB-IED (2013b).
 \newblock {Thematic Evaluation Study on governance: Cambodia country mission
   report}.
 \newblock Technical report, ADB, Manila.
@@ -257,7 +263,7 @@ Thayer, C. (2009).
 Thomas, V. (2013).
 \newblock {Guest post: the quest for better ways to measure economic
   development}.
-\newblock {\em Financial Times\/}~(June 21).
+\newblock {\em Financial Times\/}~{\em June 21}.
 
 \bibitem[\protect\citeauthoryear{{Transparency International}}{{Transparency
   International}}{2011}]{TransparencyInternational2011}
