@@ -1,8 +1,8 @@
-corruption
-==========
+# Introduction
 
-Project during my 2013 summer internship at the Asian Development Bank. Included are the report and relevant code.
+This is my project during the 2013 summer internship at the Asian Development Bank. I worked at the Independent Evaluation Deparment, assessing the Bank's approach to governance and corruption in the context of the latest development research.
 
+Included are the full report and relevant code.
 
 # Abstract
 
@@ -13,4 +13,4 @@ difficult for the ADB to get involved in political matters, the paper proposes t
 and Benchmarks strategy as a technical approach to solving a political problem. The last
 section concludes and emphasizes that this strategy is not yet another new tool to directly
 “cure” corruption. Rather, it is a change in mindset, geared towards cultivating an enabling
-environment for the people to fight against corruption themselves
+environment for the people to fight against corruption themselves.
